@@ -1,4 +1,5 @@
 <script>
+	import test from './assets/testVideo.mp4';
 	let scrollY;
 	let time;
 	let duration;
@@ -14,13 +15,7 @@
 	<div class="scroll-container" />
 
 	<div class="video-container">
-		<video
-			bind:currentTime={time}
-			bind:duration
-			preload="metadata"
-			muted
-			src="src/assets/testVideo.mp4"
-		/>
+		<video bind:currentTime={time} bind:duration preload="metadata" muted src={test} />
 	</div>
 
 	<h1>Hola Ingrid</h1>
