@@ -1,5 +1,7 @@
 <script>
-	import test from './assets/testVideo.mp4';
+	import townVideo from './assets/testVideo02.mp4';
+	import postCard01 from './assets/post01.jpeg';
+	import postCard02 from './assets/post02.jpeg';
 	let scrollY;
 	let time;
 	let duration;
@@ -12,13 +14,28 @@
 
 <svelte:window bind:scrollY />
 <main>
-	<div class="scroll-container" />
-
 	<div class="video-container">
-		<video bind:currentTime={time} bind:duration preload="metadata" muted src={test} />
+		<video
+			bind:currentTime={time}
+			bind:duration
+			preload="metadata"
+			muted
+			src={townVideo}
+			type="video/mp4"
+		/>
 	</div>
 
-	<h1>Hola Ingrid</h1>
+	<div class="scroll-container">
+		<div class="post01-container">
+			<img class="post01" src={postCard01} alt="postCard01" />
+		</div>
+		<img
+			class="post02"
+			class:show={scrollY > 2900 && scrollY < 4900}
+			src={postCard02}
+			alt="postCard02"
+		/>
+	</div>
 </main>
 
 <style>
@@ -41,6 +58,36 @@
 	}
 
 	.scroll-container {
-		height: 15000px;
+		height: 10000px;
+	}
+
+	.post01-container {
+		position: absolute;
+		top: 1500px;
+		width: 100%;
+		height: 3000px;
+	}
+
+	.post01 {
+		display: block;
+		top: 50px;
+		position: sticky;
+		position: -webkit-sticky;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.post02 {
+		min-width: 100%;
+		min-height: 100%;
+		left: 0px;
+		top: 0px;
+		position: fixed;
+		z-index: 2;
+		visibility: hidden;
+	}
+
+	.show {
+		visibility: visible;
 	}
 </style>
