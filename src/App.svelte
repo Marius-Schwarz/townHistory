@@ -1,5 +1,5 @@
 <script>
-  import sequence01 from "./assets/Sequence01.mp4";
+  import sequence01 from "assets/Sequence01.mp4";
   import sequence02 from "./assets/Sequence02.mp4";
   import sequence03 from "./assets/Sequence03.mp4";
   import sequence04 from "./assets/Sequence04.mp4";
