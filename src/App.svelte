@@ -1,210 +1,274 @@
 <script>
-	import sequence from './assets/sequence01.mp4';
-	import postCard01 from './assets/postCard01.jpg';
-  import postCard02 from './assets/postCard02.jpg';
-  import postCard03 from './assets/postCard03.jpg';
-  import postCard04 from './assets/postCard04.jpg';
-	
-  import postCard05 from './assets/postCard05.jpg';
-  import postCard06 from './assets/postCard06.jpg';
-  import postCard07 from './assets/postCard07.jpg';
-  import postCard08 from './assets/postCard08.jpg';
-  import postCard09 from './assets/postCard09.jpg';
-  import postCard10 from './assets/postCard10.jpg';
-  import postCard11 from './assets/postCard11.jpg';
-  import postCard12 from './assets/postCard12.jpg';
+  import sequence01 from './assets/Sequence01.mp4'
+  import sequence02 from './assets/Sequence02.mp4'
+  import sequence03 from './assets/Sequence03.mp4'
+  import sequence04 from './assets/Sequence04.mp4'
+  import sequence05 from './assets/Sequence05.mp4'
+  import sequence06 from './assets/Sequence06.mp4'
+
+	import ansichtkaart1 from './assets/ansichtkaart1.jpg';
+  import ansichtkaart2 from './assets/ansichtkaart2.jpg';
+  import ansichtkaart3 from './assets/ansichtkaart3.jpg';
+  import ansichtkaart4 from './assets/ansichtkaart4.jpg';
+  import ansichtkaart5 from './assets/ansichtkaart5.jpg';
+  import ansichtkaart6 from './assets/ansichtkaart6.jpg';
+  import ansichtkaart7 from './assets/ansichtkaart7.jpg';
+  import ansichtkaart8 from './assets/ansichtkaart8.jpg';
+  import ansichtkaart9 from './assets/ansichtkaart9.jpg';
+  import ansichtkaart10 from './assets/ansichtkaart10.jpg';
+  import ansichtkaart11 from './assets/ansichtkaart11.jpg';
+  import ansichtkaart12 from './assets/ansichtkaart12.jpg';
+  import ansichtkaart13 from './assets/ansichtkaart12.jpg';
+  import ansichtkaart14 from './assets/ansichtkaart14.jpg';
+  import ansichtkaart15 from './assets/ansichtkaart15.jpg';
+  import ansichtkaart16 from './assets/ansichtkaart16.jpg';
+  import ansichtkaart17 from './assets/ansichtkaart17.jpg';
+  import ansichtkaart18 from './assets/ansichtkaart18.jpg';
+  import ansichtkaart19 from './assets/ansichtkaart19.jpg';
+  import ansichtkaart20 from './assets/ansichtkaart20.jpg';
+  import ansichtkaart21 from './assets/ansichtkaart21.jpg';
+  import ansichtkaart22 from './assets/ansichtkaart22.jpg';
+  import ansichtkaart23 from './assets/ansichtkaart23.jpg';
+  import ansichtkaart24 from './assets/ansichtkaart24.jpg';
 
 	let scrollY;
-	let time;
-	let duration;
+	let duration01;
+  let duration02;
+  let duration03;
+  let duration04;
+  let duration05;
+  let duration06;
 
-	$: {
-		const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-		time = duration * (scrollY / totalScroll);
-	}
+	$: time01 = duration01 * (scrollY / 4000);
+  $: time02 = duration02 * ((scrollY - 16000) / 8000);
+  $: time03 = duration03 * ((scrollY - 48000) / 4000);
+  $: time04 = duration04 * ((scrollY - 76000) / 4000);
+  $: time05 = duration05 * ((scrollY - 90000) / 800);
+  $: time06 = duration06 * ((scrollY - 105800) / 4000);
+	
 </script>
 
 <svelte:window bind:scrollY />
 <main>
-	<div class="video-container">
+  <div class="secuence01-container">
 		<video
-			bind:currentTime={time}
-			bind:duration
+			bind:currentTime={time01}
+			bind:duration={duration01}
 			preload="metadata"
 			muted
-			src={sequence}
+			src={sequence01}
 			type="video/mp4"
 		/>
-	</div>
+  </div>
 
-	<div class="scroll-container">
-		<div class="post-card-container post01-container">
-			<img class="post-card" src={postCard01} alt="postCard01" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart1} alt="ansichtkaart1" />
+  </div>
 
-    <div class="post-card-container post02-container">
-			<img class="post-card" src={postCard02} alt="postCard02" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart2} alt="ansichtkaart2" />
+  </div>
 
-    <div class="post-card-container post03-container">
-			<img class="post-card" src={postCard03} alt="postCard03" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart3} alt="ansichtkaart3" />
+  </div>
 
-    <div class="post-card-container post04-container">
-			<img class="post-card" src={postCard04} alt="postCard04" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart4} alt="ansichtkaart4" />
+  </div>
 
-    
-    <div class="post-card-container post05-container">
-			<img class="post-card" src={postCard06} alt="postCard06" />
-		</div>
+  <div class="secuence02-container">
+		<video
+			bind:currentTime={time02}
+			bind:duration={duration02}
+			preload="metadata"
+			muted
+			src={sequence02}
+			type="video/mp4"
+		/>
+  </div>
 
-    <div class="post-card-container post06-container">
-			<img class="post-card" src={postCard06} alt="postCard06" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart5} alt="ansichtkaart5" />
+  </div>
 
-    <div class="post-card-container post07-container">
-			<img class="post-card" src={postCard07} alt="postCard07" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart6} alt="ansichtkaart6" />
+  </div>
 
-    <div class="post-card-container post08-container">
-			<img class="post-card" src={postCard08} alt="postCard08" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart7} alt="ansichtkaart7" />
+  </div>
 
-    <div class="post-card-container post09-container">
-			<img class="post-card" src={postCard09} alt="postCard09" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart8} alt="ansichtkaart8" />
+  </div>
 
-    <div class="post-card-container post10-container">
-			<img class="post-card" src={postCard10} alt="postCard10" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart9} alt="ansichtkaart9" />
+  </div>
 
-    <div class="post-card-container post11-container">
-			<img class="post-card" src={postCard11} alt="postCard11" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart10} alt="ansichtkaart10" />
+  </div>
 
-    <div class="post-card-container post12-container">
-			<img class="post-card" src={postCard12} alt="postCard12" />
-		</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart11} alt="ansichtkaart11" />
+  </div>
 
-		<!-- <img
-			class="post02"
-			class:show={scrollY > 2900 && scrollY < 4900}
-			src={postCard02}
-			alt="postCard02"
-		/> -->
-	</div>
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart12} alt="ansichtkaart12" />
+  </div>
+
+  <div class="secuence03-container">
+		<video
+			bind:currentTime={time03}
+			bind:duration={duration03}
+			preload="metadata"
+			muted
+			src={sequence03}
+			type="video/mp4"
+		/>
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart13} alt="ansichtkaart13" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart14} alt="ansichtkaart14" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart15} alt="ansichtkaart14" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart16} alt="ansichtkaart16" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart17} alt="ansichtkaart17" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart18} alt="ansichtkaart18" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart19} alt="ansichtkaart19" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart20} alt="ansichtkaart20" />
+  </div>
+
+  <div class="secuence04-container">
+		<video
+			bind:currentTime={time04}
+			bind:duration={duration04}
+			preload="metadata"
+			muted
+			src={sequence04}
+			type="video/mp4"
+		/>
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart21} alt="ansichtkaart21" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart22} alt="ansichtkaart22" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart23} alt="ansichtkaart23" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart24} alt="ansichtkaart24" />
+  </div>
+
+  <div class="secuence05-container">
+		<video
+			bind:currentTime={time05}
+			bind:duration={duration05}
+			preload="metadata"
+			muted
+			src={sequence05}
+			type="video/mp4"
+		/>
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart21} alt="ansichtkaart21" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart22} alt="ansichtkaart22" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart23} alt="ansichtkaart23" />
+  </div>
+
+  <div class="ansichtkaart-container">
+    <img class="post-card" src={ansichtkaart24} alt="ansichtkaart24" />
+  </div>
+
+  <div class="secuence05-container">
+		<video
+			bind:currentTime={time06}
+			bind:duration={duration06}
+			preload="metadata"
+			muted
+			src={sequence06}
+			type="video/mp4"
+		/>
+  </div>
 </main>
 
 <style>
-	.video-container {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		overflow: hidden;
-	}
-
-	.video-container video {
-		min-width: 100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-
-	.scroll-container {
-		height: 10000px;
+	video {
+		width: 100%;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0px;
 	}
 
   .post-card {
+    top: 0;
     width: 100%;
-		top: 0px;
-		position: sticky;
-		position: -webkit-sticky;
+    position: sticky;
+  }
+	.secuence01-container {
+		height: 4000px;
+	}
+  
+  .secuence02-container {
+		height: 8000px;
 	}
 
-  .post-card-container {
-    position: absolute;
-    left: 0px;
+  .secuence03-container {
+		height: 4000px;
+	}
+
+  .secuence04-container {
+		height: 3000px;
+	}
+
+  .secuence05-container {
+		height: 800px;
+	}
+
+  .secuence05-container {
+		height: 4000px;
+	}
+  
+  .ansichtkaart-container{
+    height: 3000px;
   }
 
-	.post01-container {
-		top: 1500px;
-    height: 3000px;
-	}
-
-  .post02-container {
-		top: 3000px;
-    height: 3000px;
-	}
-
-  .post03-container {
-		top: 4500px;
-    height: 3000px;
-	}
-
-  .post04-container {
-		top: 6000px;
-    height: 2000px;
-	}
-
-
-  .post05-container {
-		top: 10000px;
-    height: 3000px;
-	}
-
-  .post06-container {
-		top: 12500px;
-    height: 3000px;
-	}
-
-  .post07-container {
-		top: 15000px;
-    height: 3000px;
-	}
-
-  .post08-container {
-		top: 17500px;
-    height: 3000px;
-	}
-
-  .post09-container {
-		top: 20000px;
-    height: 3000px;
-	}
-
-  .post10-container {
-		top: 22500px;
-    height: 3000px;
-	}
-
-  .post11-container {
-		top: 25000px;
-    height: 3000px;
-	}
-
-  .post12-container {
-		top: 27600px;
-    height: 2000px;
-	}
-
-	
-
-	/* .post02 {
-		min-width: 100%;
-		min-height: 100%;
-		left: 0px;
-		top: 0px;
-		position: fixed;
-		z-index: 2;
-		visibility: hidden;
-	}
-
-	.show {
-		visibility: visible;
-	} */
+  
 </style>
