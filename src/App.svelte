@@ -1,35 +1,21 @@
 <script>
-  import sequence01 from "./assets/sequence01.mp4";
-  import sequence02 from "./assets/Sequence02.mp4";
-  import sequence03 from "./assets/Sequence03.mp4";
-  import sequence04 from "./assets/Sequence04.mp4";
-  import sequence05 from "./assets/Sequence05.mp4";
-  import sequence06 from "./assets/Sequence06.mp4";
+  import sequence01 from "./assets/Sequence01.webm";
+  import sequence02 from "./assets/Sequence02.webm";
+  import sequence03 from "./assets/Sequence03.webm";
+  import sequence04 from "./assets/Sequence04.webm";
+  import sequence05 from "./assets/Sequence05.webm";
+  import sequence06 from "./assets/Sequence06.webm";
 
-  import ansichtkaart1 from "./assets/ansichtkaart1.jpg";
-  import ansichtkaart2 from "./assets/ansichtkaart2.jpg";
-  import ansichtkaart3 from "./assets/ansichtkaart3.jpg";
-  import ansichtkaart4 from "./assets/ansichtkaart4.jpg";
-  import ansichtkaart5 from "./assets/ansichtkaart5.jpg";
-  import ansichtkaart6 from "./assets/ansichtkaart6.jpg";
-  import ansichtkaart7 from "./assets/ansichtkaart7.jpg";
-  import ansichtkaart8 from "./assets/ansichtkaart8.jpg";
-  import ansichtkaart9 from "./assets/ansichtkaart9.jpg";
-  import ansichtkaart10 from "./assets/ansichtkaart10.jpg";
-  import ansichtkaart11 from "./assets/ansichtkaart11.jpg";
-  import ansichtkaart12 from "./assets/ansichtkaart12.jpg";
-  import ansichtkaart13 from "./assets/ansichtkaart12.jpg";
-  import ansichtkaart14 from "./assets/ansichtkaart14.jpg";
-  import ansichtkaart15 from "./assets/ansichtkaart15.jpg";
-  import ansichtkaart16 from "./assets/ansichtkaart16.jpg";
-  import ansichtkaart17 from "./assets/ansichtkaart17.jpg";
-  import ansichtkaart18 from "./assets/ansichtkaart18.jpg";
-  import ansichtkaart19 from "./assets/ansichtkaart19.jpg";
-  import ansichtkaart20 from "./assets/ansichtkaart20.jpg";
-  import ansichtkaart21 from "./assets/ansichtkaart21.jpg";
-  import ansichtkaart22 from "./assets/ansichtkaart22.jpg";
-  import ansichtkaart23 from "./assets/ansichtkaart23.jpg";
-  import ansichtkaart24 from "./assets/ansichtkaart24.jpg";
+  import PostCard from "./lib/PostCard.svelte";
+  import {
+    postCardsSecuence01,
+    postCardsSecuence02,
+    postCardsSecuence03,
+    postCardsSecuence04,
+    postCardsSecuence05,
+  } from "./lib/secuences";
+
+  const VideoDurationFactor = 140;
 
   let scrollY;
   let duration01;
@@ -39,233 +25,188 @@
   let duration05;
   let duration06;
 
-  $: time01 = duration01 * (scrollY / 4000);
-  $: time02 = duration02 * ((scrollY - 16000) / 8000);
-  $: time03 = duration03 * ((scrollY - 48000) / 4000);
-  $: time04 = duration04 * ((scrollY - 76000) / 4000);
-  $: time05 = duration05 * ((scrollY - 90000) / 800);
-  $: time06 = duration06 * ((scrollY - 105800) / 4000);
+  $: videoTop02 =
+    duration01 * VideoDurationFactor + postCardsSecuence01.length * 1000;
+
+  $: videoTop03 =
+    videoTop02 +
+    duration02 * VideoDurationFactor +
+    postCardsSecuence02.length * 1000;
+
+  $: videoTop04 =
+    videoTop03 +
+    duration03 * VideoDurationFactor +
+    postCardsSecuence03.length * 1000;
+
+  $: videoTop05 =
+    videoTop04 +
+    duration04 * VideoDurationFactor +
+    postCardsSecuence04.length * 1000;
+
+  $: videoTop06 =
+    videoTop05 +
+    duration05 * VideoDurationFactor +
+    postCardsSecuence05.length * 1000;
+
+  $: time01 = getVideocurrentTime(duration01, scrollY, 0);
+
+  $: time02 = getVideocurrentTime(duration02, scrollY, videoTop02);
+
+  $: time03 = getVideocurrentTime(duration03, scrollY, videoTop03);
+
+  $: time04 = getVideocurrentTime(duration04, scrollY, videoTop04);
+
+  $: time05 = getVideocurrentTime(duration05, scrollY, videoTop05);
+
+  $: time06 = getVideocurrentTime(duration06, scrollY, videoTop06);
+
+  function getVideocurrentTime(
+    videoDuration,
+    pageHeight,
+    videoContainerTopDistance
+  ) {
+    return (
+      videoDuration *
+      ((pageHeight - videoContainerTopDistance) /
+        (videoDuration * VideoDurationFactor))
+    );
+  }
 </script>
 
 <svelte:window bind:scrollY />
 <main>
-  <div class="secuence01-container">
-    <video
-      bind:currentTime={time01}
-      bind:duration={duration01}
-      preload="metadata"
-      muted
-      src={sequence01}
-      type="video/mp4"
-    />
-  </div>
+  {#if !sequence01 && !sequence02 && !sequence03 && !sequence04 && !sequence05}
+    <div>LOADING ...</div>
+  {:else}
+    <div style="height: {duration01 * VideoDurationFactor}px">
+      <video
+        bind:currentTime={time01}
+        bind:duration={duration01}
+        preload="metadata"
+        muted
+        src={sequence01}
+      />
+    </div>
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart1} alt="ansichtkaart1" />
-  </div>
+    {#each postCardsSecuence01 as postCard, index}
+      <PostCard
+        imgSrc={postCard}
+        top={duration01 * VideoDurationFactor + index * 1000}
+        zIndex={index + 2}
+      />
+    {/each}
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart2} alt="ansichtkaart2" />
-  </div>
+    <div
+      style="
+      height: {duration02 * VideoDurationFactor}px; 
+      position: absolute;
+      top: {videoTop02}px; z-index: 100
+    "
+    >
+      <video
+        bind:currentTime={time02}
+        bind:duration={duration02}
+        preload="metadata"
+        muted
+        src={sequence02}
+      />
+    </div>
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart3} alt="ansichtkaart3" />
-  </div>
+    {#each postCardsSecuence02 as postCard, index}
+      <PostCard
+        imgSrc={postCard}
+        top={videoTop02 + duration02 * VideoDurationFactor + index * 1000}
+        zIndex={index + 100 + 2}
+      />
+    {/each}
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart4} alt="ansichtkaart4" />
-  </div>
+    <div
+      style="height: {duration03 * VideoDurationFactor}px; 
+      position: absolute; 
+      top: {videoTop03}px; z-index: 200"
+    >
+      <video
+        bind:currentTime={time03}
+        bind:duration={duration03}
+        preload="metadata"
+        muted
+        src={sequence03}
+      />
+    </div>
 
-  <div class="secuence02-container">
-    <video
-      bind:currentTime={time02}
-      bind:duration={duration02}
-      preload="metadata"
-      muted
-      src={sequence02}
-      type="video/mp4"
-    />
-  </div>
+    {#each postCardsSecuence03 as postCard, index}
+      <PostCard
+        imgSrc={postCard}
+        top={videoTop03 + duration03 * VideoDurationFactor + index * 1000}
+        zIndex={index + 300 + 2}
+      />
+    {/each}
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart5} alt="ansichtkaart5" />
-  </div>
+    <div
+      style="height: {duration04 * VideoDurationFactor}px; 
+      position: absolute; 
+      top: {videoTop04}px; z-index: 400"
+    >
+      <video
+        bind:currentTime={time04}
+        bind:duration={duration04}
+        preload="metadata"
+        muted
+        src={sequence04}
+      />
+    </div>
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart6} alt="ansichtkaart6" />
-  </div>
+    {#each postCardsSecuence04 as postCard, index}
+      <PostCard
+        imgSrc={postCard}
+        top={videoTop04 + duration04 * VideoDurationFactor + index * 1000}
+        zIndex={index + 400 + 2}
+      />
+    {/each}
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart7} alt="ansichtkaart7" />
-  </div>
+    <div
+      style="height: {duration05 * VideoDurationFactor}px; 
+    position: absolute; 
+    top: {videoTop05}px; z-index: 500"
+    >
+      <video
+        bind:currentTime={time05}
+        bind:duration={duration05}
+        preload="metadata"
+        muted
+        src={sequence05}
+      />
+    </div>
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart8} alt="ansichtkaart8" />
-  </div>
+    {#each postCardsSecuence05 as postCard, index}
+      <PostCard
+        imgSrc={postCard}
+        top={videoTop05 + duration05 * VideoDurationFactor + index * 1000}
+        zIndex={index + 500 + 2}
+      />
+    {/each}
 
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart9} alt="ansichtkaart9" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart10} alt="ansichtkaart10" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart11} alt="ansichtkaart11" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart12} alt="ansichtkaart12" />
-  </div>
-
-  <div class="secuence03-container">
-    <video
-      bind:currentTime={time03}
-      bind:duration={duration03}
-      preload="metadata"
-      muted
-      src={sequence03}
-      type="video/mp4"
-    />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart13} alt="ansichtkaart13" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart14} alt="ansichtkaart14" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart15} alt="ansichtkaart14" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart16} alt="ansichtkaart16" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart17} alt="ansichtkaart17" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart18} alt="ansichtkaart18" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart19} alt="ansichtkaart19" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart20} alt="ansichtkaart20" />
-  </div>
-
-  <div class="secuence04-container">
-    <video
-      bind:currentTime={time04}
-      bind:duration={duration04}
-      preload="metadata"
-      muted
-      src={sequence04}
-      type="video/mp4"
-    />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart21} alt="ansichtkaart21" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart22} alt="ansichtkaart22" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart23} alt="ansichtkaart23" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart24} alt="ansichtkaart24" />
-  </div>
-
-  <div class="secuence05-container">
-    <video
-      bind:currentTime={time05}
-      bind:duration={duration05}
-      preload="metadata"
-      muted
-      src={sequence05}
-      type="video/mp4"
-    />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart21} alt="ansichtkaart21" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart22} alt="ansichtkaart22" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart23} alt="ansichtkaart23" />
-  </div>
-
-  <div class="ansichtkaart-container">
-    <img class="post-card" src={ansichtkaart24} alt="ansichtkaart24" />
-  </div>
-
-  <div class="secuence05-container">
-    <video
-      bind:currentTime={time06}
-      bind:duration={duration06}
-      preload="metadata"
-      muted
-      src={sequence06}
-      type="video/mp4"
-    />
-  </div>
+    <div
+      style="height: {duration06 * VideoDurationFactor}px; 
+    position: absolute; 
+    top: {videoTop06}px; z-index: 600"
+    >
+      <video
+        bind:currentTime={time06}
+        bind:duration={duration06}
+        preload="metadata"
+        muted
+        src={sequence06}
+      />
+    </div>
+  {/if}
 </main>
 
 <style>
   video {
-    width: 100%;
+    height: 750px;
     position: sticky;
     position: -webkit-sticky;
     top: 0px;
-  }
-
-  .post-card {
-    top: 0;
-    width: 100%;
-    position: sticky;
-  }
-  .secuence01-container {
-    height: 4000px;
-  }
-
-  .secuence02-container {
-    height: 8000px;
-  }
-
-  .secuence03-container {
-    height: 4000px;
-  }
-
-  .secuence04-container {
-    height: 3000px;
-  }
-
-  .secuence05-container {
-    height: 800px;
-  }
-
-  .secuence05-container {
-    height: 4000px;
-  }
-
-  .ansichtkaart-container {
-    height: 3000px;
   }
 </style>
