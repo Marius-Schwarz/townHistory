@@ -9,7 +9,7 @@ import ansichtkaart8 from "./../assets/ansichtkaart8.jpg";
 import ansichtkaart9 from "./../assets/ansichtkaart9.jpg";
 import ansichtkaart10 from "./../assets/ansichtkaart10.jpg";
 import ansichtkaart11 from "./../assets/ansichtkaart11.jpg";
-import ansichtkaart12 from "./../assets/ansichtkaart12.jpg";
+import ansichtkaart12 from "./../assets/ansichtkaart---12.jpg";
 import ansichtkaart13 from "./../assets/ansichtkaart12.jpg";
 import ansichtkaart14 from "./../assets/ansichtkaart14.jpg";
 import ansichtkaart15 from "./../assets/ansichtkaart15.jpg";
